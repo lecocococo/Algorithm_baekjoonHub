@@ -12,9 +12,8 @@ public class Main {
     static List<Integer>[] pre;
     static int[] mVals;
     static List<Integer>[] g;
-    static List<Integer> ans;
     static int num;
-    static int sum;
+
 
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
@@ -23,7 +22,7 @@ public class Main {
         StringBuilder sb = new StringBuilder();
 
         for (int t = 0; t < T; t++) {
-            sum = 0;
+
             StringTokenizer st = new StringTokenizer(br. readLine());
 
             N = Integer.parseInt(st.nextToken());
@@ -39,7 +38,7 @@ public class Main {
             pre = new List[N + 1];
             mVals = new int[N + 1];
             g = new List[N + 1];
-            ans = new ArrayList<>();
+
 
             for (int i = 1; i < N + 1; i++) {
                 g[i] = new ArrayList();
@@ -70,35 +69,34 @@ public class Main {
     }
 
     static void topologySort() {
-        Queue<int []> q = new ArrayDeque<>();
+        Queue<Integer> q = new ArrayDeque<>();
 
         for (int i = 1; i < N + 1; i++) {
             if (indegree[i] == 0) {
 
-                q.add(new int[] {i, times[i]});
+                q.add(i);
             }
         }
 
         while (!q.isEmpty()) {
-            int[] temp = q.poll();
+            int temp = q.poll();
             
             int max = 0;
-            for (Integer k : pre[temp[0]]) {
+            for (Integer k : pre[temp]) {
                 if (mVals[k] > max) {
                     max = mVals[k];
                 }
             }
-            mVals[temp[0]] = max + times[temp[0]];
+            mVals[temp] = max + times[temp];
 
-            for (Integer i : g[temp[0]]) {
+            for (Integer i : g[temp]) {
                 indegree[i]--;
                 if(indegree[i]==0) {
-                    q.add(new int[]{i, temp[1] + mVals[i]});
+                    q.add(i);
                 }
 
             }
 
-            ans.add(temp[0]);
         }
 
     }
