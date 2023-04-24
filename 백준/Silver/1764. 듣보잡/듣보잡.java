@@ -14,7 +14,7 @@ public class Main {
         N = Integer.parseInt(st.nextToken());
         M = Integer.parseInt(st.nextToken());
 
-        map = new TreeMap<>();
+        map = new HashMap<>();
 
         for (int i = 0; i < N; i++) {
             map.put(br.readLine(), 1);
@@ -25,22 +25,19 @@ public class Main {
         for (int i = 0; i < M; i++) {
             String temp = br.readLine();
             if (map.getOrDefault(temp, -1) == 1) {
-                map.put(temp, map.get(temp)+1);
+                list.add(temp);
+                // map.put(temp, map.get(temp)+1);
             }
         }
 
-//        list.sort(Comparator.naturalOrder());
-//        System.out.println(list.size());
-        int cnt = 0;
+        list.sort(Comparator.naturalOrder());
+        System.out.println(list.size());
+
         StringBuilder sb = new StringBuilder();
-        for (String s : map.keySet()) {
-            if (map.get(s) == 2) {
-                cnt++;
-                sb.append(s).append("\n");
-            }
+        for (String s : list) {
+            sb.append(s).append("\n");
         }
 
-        System.out.println(cnt);
         System.out.println(sb);
     }
 }
