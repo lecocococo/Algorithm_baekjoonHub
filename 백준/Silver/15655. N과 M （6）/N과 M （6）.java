@@ -16,10 +16,10 @@ public class Main {
         int N = Integer.parseInt(st.nextToken());
         int M = Integer.parseInt(st.nextToken());
 
-        StringTokenizer st2 = new StringTokenizer(br.readLine());
+        st = new StringTokenizer(br.readLine());
         arr = new int[N];
         for(int i =0; i<N;i++){
-            arr[i] = Integer.parseInt(st2.nextToken());
+            arr[i] = Integer.parseInt(st.nextToken());
         }
         Arrays.sort(arr);
 
