@@ -10,7 +10,6 @@ public class Main {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         N = Integer.parseInt(br.readLine());
 
-//        Map<String, Integer> ans = new TreeMap<>();
         Map<String, Integer> ans = new HashMap<>();
 
         for (int i = 0; i < N; i++) {
