@@ -1,33 +1,32 @@
-import java.io.*;
-import java.util.*;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.ArrayDeque;
+import java.util.Queue;
 
 public class Main {
-	
-	public static void main(String[] args) throws IOException {
-		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-		String s = br.readLine();
-		
-		Stack<String> stack = new Stack<>();
-		int result = 0;
-		
-		for(int i=0;i<s.length();i++) {
-			char st = s.charAt(i);
-			
-			if(st=='(')
-				stack.push("(");
-			else if(st==')') {
-				if(s.charAt(i-1)=='(') {
-					stack.pop();
-					result += stack.size();
-				}
-				else {
-					stack.pop();
-					result += 1;
-				}
-			}
-		}
-		
-		System.out.println(result);
-	}
-}
+    public static void main(String[] args) throws IOException {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        char[] arr = br.readLine().toCharArray();
+        Queue<Character> q = new ArrayDeque<>();
 
+        int answer = 0;
+        for (int i = 0; i < arr.length; i++) {
+            if (arr[i] == '(') {
+                q.add('(');
+            }
+            if (arr[i] == ')') {
+                if (arr[i - 1] == '(') {
+                    q.poll();
+                    answer += q.size();
+                } else {
+                    q.poll();
+                    answer += 1;
+                }
+
+            }
+        }
+
+        System.out.println(answer);
+    }
+}
