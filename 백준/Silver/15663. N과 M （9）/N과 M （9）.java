@@ -1,12 +1,17 @@
-import java.io.*;
-import java.util.*;
-//
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.Arrays;
+import java.util.HashSet;
+import java.util.Set;
+import java.util.StringTokenizer;
+
 public class Main {
 
     public static int[] arr;
     public static int[] l;
     public static boolean[] visited;
-    private static HashSet<String> set = new HashSet<>();
+    private static Set<String> set = new HashSet<>();
     public static StringBuilder sb = new StringBuilder();
 
     public static void main(String[] args) throws IOException {
@@ -17,21 +22,21 @@ public class Main {
         int N = Integer.parseInt(st.nextToken());
         int M = Integer.parseInt(st.nextToken());
 
-        StringTokenizer st2 = new StringTokenizer(br.readLine());
+        st = new StringTokenizer(br.readLine());
         arr = new int[N];
-        for(int i =0; i<N;i++){
-            arr[i] = Integer.parseInt(st2.nextToken());
+        for (int i = 0; i < N; i++) {
+            arr[i] = Integer.parseInt(st.nextToken());
         }
         Arrays.sort(arr);
 
         l = new int[M];
         visited = new boolean[N];
-        dfs(N, M,0);
+        solve(N, M,0);
         System.out.println(sb);
 
     }
 
-    public static void dfs(int N, int M, int depth) {
+    public static void solve(int N, int M, int depth) {
         if (depth == M) {
             StringBuilder sb2 = new StringBuilder();
             for (int val : l) {
@@ -48,11 +53,10 @@ public class Main {
             if (!visited[i]){
                 visited[i] = true;
                 l[depth] = arr[i];
-                dfs(N, M, depth + 1);
+                solve(N, M, depth + 1);
+                l[depth] = 0;
                 visited[i] = false;
             }
-
-
         }
     }
 }
