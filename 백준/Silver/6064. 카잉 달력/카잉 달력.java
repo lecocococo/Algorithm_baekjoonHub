@@ -1,24 +1,29 @@
-import java.io.*;
-import java.util.*;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.StringTokenizer;
+
 public class Main {
-    public static void main(String[] args) throws IOException{
+    public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-        BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
 
         int T = Integer.parseInt(br.readLine());
-        for (int i = 0; i<T; i++){
-            int tc[]= new int[4];
+        for (int t = 0; t < T; t++) {
+            int arr[]= new int[4];
             StringTokenizer st = new StringTokenizer(br.readLine());
 
-            for (int j = 0; j<4;j++) {
-                tc[j] = Integer.parseInt(st.nextToken());
+            for (int j = 0; j < 4; j++) {
+                arr[j] = Integer.parseInt(st.nextToken());
             }
-            tc[2] = tc[2] - 1;
-            tc[3] = tc[3] - 1;
+
+            arr[2] -= 1;
+            arr[3] -= 1;
+
             boolean flag = false;
-            for (int k = tc[2]; k < (tc[0] * tc[1]); k += tc[0]) {
-                if (k % tc[1] == tc[3]) {
-                    System.out.println(k + 1);
+            // x먼저 맞추고 y맞춤
+            for (int i = arr[2]; i < (arr[0] * arr[1]); i += arr[0]) {
+                if (i % arr[1] == arr[3]) {
+                    System.out.println(i + 1);
                     flag = true;
                     break;
                 }
@@ -26,13 +31,7 @@ public class Main {
 
             if (!flag) {
                 System.out.println(-1);
-
             }
-
-
         }
-
-
     }
-
 }
